@@ -1,10 +1,17 @@
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import TicketsTable from "./components/TicketsTable"
+import {APIEndpoints} from '../../../config'
 
 function TicketsSummary() {
   const [tickets, setTickets] = useState([])
 
-  console.log({ tickets })
+  useEffect(() => {
+    fetch(APIEndpoints.tickets)
+      .then(res => res.json())
+      .then(data => {
+        setTickets(data);
+      })
+  }, [])
 
   return (
     <main>

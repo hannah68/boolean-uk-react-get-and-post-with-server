@@ -3,8 +3,11 @@ import { Link } from "react-router-dom"
 import HomePage from "./Home"
 import BookTicket from "./tickets/BookTicket"
 import ViewTickets from "./tickets/ViewTickets"
+import { useState } from "react"
 
 function UserRouter() {
+  const [tickets, setTickets] = useState([])
+  const [tour, setTour] = useState([]);
   return (
     <>
       <header>
@@ -23,9 +26,27 @@ function UserRouter() {
         </nav>
       </header>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/tours/:id/book" element={<BookTicket />} />
-        <Route path="/tickets" element={<ViewTickets />} />
+        <Route 
+          path="/" 
+          element={<HomePage />} 
+        />
+        <Route 
+          path="/tours/:id/book" 
+          element={<BookTicket 
+          tickets={tickets} 
+          setTickets={setTickets}
+          tour={tour}
+          setTour={setTour}
+          />} 
+        />
+        <Route 
+          path="/tickets" 
+          element={<ViewTickets 
+          tickets={tickets} 
+          setTickets={setTickets}
+          tour={tour}
+          setTour={setTour}
+        />} />
       </Routes>
     </>
   )

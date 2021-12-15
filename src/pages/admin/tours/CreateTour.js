@@ -1,19 +1,40 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import {useNavigate} from 'react-router';
+import {LocalRoutes, APIEndpoints} from '../../../config';
 
 function CreateTourPage(props) {
   const { tours, setTours } = props
+  const [submitted, setsubmitted] = useState(false);
 
   const [tourToCreate, setTourToCreate] = useState({
     name: "",
     price: 0,
   })
 
-  console.log({ tourToCreate })
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(submitted){
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(tourToCreate)
+      };
+  
+      fetch(APIEndpoints.tours, requestOptions)
+          .then(response => response.json())
+          .then(data => {
+            setTours([...tours, data]);
+            navigate(LocalRoutes.home);
+          })
+          .catch(error => console.log('error', error))
+    }
+  }, [tours, submitted, setTours, tourToCreate, navigate])
+ 
 
   function handleSubmit(event) {
     event.preventDefault()
-
-    // Redirect to "/" with navigate and useNavigate
+    setsubmitted(true);
   }
 
   function handleChange(event) {

@@ -1,14 +1,23 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Route, Routes } from "react-router"
 import { Link } from "react-router-dom"
 import CreateTourPage from "./tours/CreateTour"
 import Dashboard from "./Dashboard"
 import TicketsSummary from "./tickets/Summary"
 
+import {LocalRoutes, APIEndpoints} from '../../config'
+
 function AdminRouter() {
   const [tours, setTours] = useState([])
 
-  console.log({ tours })
+
+  useEffect(() => {
+    fetch(APIEndpoints.tours)
+      .then(res => res.json())
+      .then(data => {
+        setTours(data);
+      })
+  }, [])
 
   return (
     <>
@@ -25,7 +34,7 @@ function AdminRouter() {
               <Link to="/admin/tickets/summary">Tickets Summary</Link>
             </li>
             <li>
-              <Link to="/">User Pages</Link>
+              <Link to={LocalRoutes.home}>User Pages</Link>
             </li>
           </ul>
         </nav>
