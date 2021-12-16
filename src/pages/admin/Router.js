@@ -40,12 +40,20 @@ function AdminRouter() {
         </nav>
       </header>
       <Routes>
-        <Route path="/" element={<Dashboard tours={tours} />} />
+        <Route 
+        path="/" 
+        element={<Dashboard 
+          tours={tours} />} 
+        />
         <Route
           path="/tours/create"
-          element={<CreateTourPage tours={tours} setTours={setTours} />}
+          element={<CreateTourPage 
+            tours={tours} 
+            setTours={setTours} />}
         />
-        <Route path="tickets/summary" element={<TicketsSummary />} />
+        <Route 
+        path="tickets/summary" 
+        element={<TicketsSummary />} />
       </Routes>
     </>
   )

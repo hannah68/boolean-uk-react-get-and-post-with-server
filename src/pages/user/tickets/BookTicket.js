@@ -36,6 +36,7 @@ function BookTicket() {
         body: JSON.stringify({ ...ticketInfo, tourId: tour.id }),
       }
       await fetch(APIEndpoints.tickets, requestOptions);
+      setsubmitted(false);
       navigate('/tickets');
     }
     if(submitted){

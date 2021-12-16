@@ -9,6 +9,9 @@ function CreateTourPage(props) {
   const [tourToCreate, setTourToCreate] = useState({
     name: "",
     price: 0,
+    street: '',
+    city: '',
+    postcode: ''
   })
 
   const navigate = useNavigate();
@@ -27,7 +30,8 @@ function CreateTourPage(props) {
             setTours([...tours, data]);
             navigate(LocalRoutes.home);
           })
-          .catch(error => console.log('error', error))
+          .catch(error => console.log('error', error));
+          setsubmitted(false);
     }
   }, [tours, submitted, setTours, tourToCreate, navigate])
  
@@ -62,6 +66,30 @@ function CreateTourPage(props) {
         name="price"
         onChange={handleChange}
         value={tourToCreate.price}
+      />
+      <label htmlFor="price">street</label>
+      <input
+        type="text"
+        id="street"
+        name="street"
+        onChange={handleChange}
+        value={tourToCreate.street}
+      />
+      <label htmlFor="price">city</label>
+      <input
+        type="text"
+        id="city"
+        name="city"
+        onChange={handleChange}
+        value={tourToCreate.city}
+      />
+      <label htmlFor="price">postcode</label>
+      <input
+        type="text"
+        id="postcode"
+        name="postcode"
+        onChange={handleChange}
+        value={tourToCreate.postcode}
       />
       <button type="submit">Create Tour</button>
     </form>

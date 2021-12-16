@@ -3,22 +3,40 @@
     {
       "id": 1,
       "name": "Madame Tussauds",
-      "price": 8.5
+      "price": 8.5,
+      "addressId": 1
     },
     {
       "id": 2,
       "name": "Natural History Museum",
-      "price": 14
-    },
-    {
-      "id": 3,
-      "name": "City of London",
-      "price": 24
+      "price": 14,
+      "addressId": 2
     },
     {
       "price": "11.50",
       "name": "Big Ben",
-      "id": 4
+      "id": 3,
+      "addressId": 3
+    }
+  ],
+  "addresses": [
+    {
+      "id": 1,
+      "street": "Marylebone Rd",
+      "city": "London",
+      "postCode": "NW1 5LR"
+    },
+    {
+      "id": 2,
+      "street": "Cromwell Rd, South Kensington",
+      "city": "London",
+      "postCode": "SW7 5BD"
+    },
+    {
+      "street": "Westminster",
+      "city": "London",
+      "postCode": "SW1A 0AA",
+      "id": 3
     }
   ],
   "tickets": [
@@ -49,27 +67,6 @@
       "date": "2021-12-17",
       "tourId": 2,
       "id": 4
-    },
-    {
-      "email": "reza",
-      "quantity": "2",
-      "date": "2021-12-17",
-      "tourId": 2,
-      "id": 5
-    },
-    {
-      "email": "adarf@gd",
-      "quantity": "4",
-      "date": "2021-12-17",
-      "tourId": 3,
-      "id": 6
-    },
-    {
-      "email": "shale",
-      "quantity": "5",
-      "date": "2021-12-17",
-      "tourId": 4,
-      "id": 7
     }
   ]
 }

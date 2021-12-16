@@ -18,11 +18,14 @@ function ToursList() {
   return (
     <ul>
       {tours.map((tour, index) => {
-        const { name, price } = tour
+        const { name, price, postcode, city, street} = tour
 
         return (
           <li key={index}>
             <h3>{name}</h3>
+            <p>{street}</p>
+            <p>{city}</p>
+            <p>{postcode}</p>
             <p>Price: £{price}</p>
             <Link to={`/tours/${tour.id}/book`} state={{ tour }}>
               Book Tour
