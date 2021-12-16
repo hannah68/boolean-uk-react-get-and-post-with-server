@@ -5,6 +5,7 @@ import {APIEndpoints} from '../../../config';
 
 function BookTicket() {
   const [tour, setTour] = useState(null);
+  const [submitted, setsubmitted] = useState(false);
   const [ticketInfo, setTicketInfo] = useState({
     email: '',
     quantity: '',
@@ -25,24 +26,29 @@ function BookTicket() {
     }
   }, [location])
 
-
-  const postDataToTickets = async () => {
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...ticketInfo, tourId: tour.id }),
+  useEffect(() => {
+    const postDataToTickets = async () => {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...ticketInfo, tourId: tour.id }),
+      }
+      await fetch(APIEndpoints.tickets, requestOptions);
+      navigate('/tickets');
     }
 
-    await fetch(APIEndpoints.tickets, requestOptions);
-    navigate('/tickets');
-  }
+    if(submitted){
+      postDataToTickets()
+    }
+  }, [navigate, submitted, ticketInfo])
+  
 
   // handle submit===================
   const handleSubmit = (event) => {
     event.preventDefault();
-    postDataToTickets()
+    setsubmitted(true)
   }
 
   // handle change===================
