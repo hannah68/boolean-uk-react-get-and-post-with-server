@@ -38,31 +38,17 @@
     },
     {
       "email": "Reihaneh.naderi1989@gmail.com",
-      "quantity": "3",
-      "date": "2021-12-16",
+      "quantity": "23",
+      "date": "2021-12-17",
       "tourId": 1,
       "id": 3
     },
     {
-      "email": "Reihaneh.naderi1989@gmail.com",
-      "quantity": "3",
-      "date": "2021-12-16",
-      "tourId": 1,
+      "email": "hannah.naderi68@gmail.com",
+      "quantity": "23",
+      "date": "2021-12-17",
+      "tourId": 2,
       "id": 4
-    },
-    {
-      "email": "hannah.naderi68@gmail.com",
-      "quantity": "3",
-      "date": "2021-12-15",
-      "tourId": 1,
-      "id": 5
-    },
-    {
-      "email": "hannah.naderi68@gmail.com",
-      "quantity": "3",
-      "date": "2021-12-15",
-      "tourId": 1,
-      "id": 6
     }
   ]
 }

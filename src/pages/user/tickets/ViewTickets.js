@@ -2,27 +2,24 @@ import { useEffect} from "react"
 import {APIEndpoints} from '../../../config'
 import { useState } from "react"
 
-function ViewTickets(props) {
+function ViewTickets() {
   const [tickets, setTickets] = useState([])
 
-
   useEffect(() => {
-    fetch('http://localhost:3030/tickets',{
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }
-    })
-    
-    
-      .then(res => {
-        let response = JSON.stringify(res)
-        res = JSON.parse(response)
-      })
-      .then(data => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(APIEndpoints.tickets);
+        const data = await res.json();
         setTickets(data);
-      })
+      }
+      catch(error) {
+        console.log(error);
+      }
+    }
+    fetchData();
   }, [])
+
+  
   
   return (
     <ul>

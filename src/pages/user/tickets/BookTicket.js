@@ -3,22 +3,15 @@ import { useLocation} from "react-router";
 import {useNavigate} from 'react-router';
 import {APIEndpoints} from '../../../config';
 
-function BookTicket(props) {
-  const [tickets, setTickets] = useState([])
-  const [tour, setTour] = useState([]);
-  // const {tour, setTour} = props
-  const [submitted, setsubmitted] = useState(false);
+function BookTicket() {
+  const [tour, setTour] = useState(null);
   const [ticketInfo, setTicketInfo] = useState({
     email: '',
     quantity: '',
     date: '',
-    tourId: '',
+    tourId: null,
   });
 
-  console.log('tickets',tickets);
-  console.log('tour',tour);
-  console.log('submitted',submitted);
-  console.log('ticketInfo',ticketInfo);
 
   // =================
   const location = useLocation();
@@ -32,40 +25,24 @@ function BookTicket(props) {
     }
   }, [location])
 
-  useEffect(() => {
-    fetch(APIEndpoints.tickets)
-      .then(res => res.json())
-      .then(data => {
-        setTickets(data);
-      })
-  }, [])
 
-  useEffect(() => {
-    if(submitted){
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(ticketInfo)
-      };
-  
-      fetch(APIEndpoints.tickets, requestOptions)
-          .then(response => response.json())
-          .then(data => {
-            console.log('data', data);
-            setTickets([...tickets, data]);
-            setTour([tour, ...[...tickets ,ticketInfo]])
-            // navigate('/tickets');
-          })
-          .catch(error => console.log('error', error))
+  const postDataToTickets = async () => {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...ticketInfo, tourId: tour.id }),
     }
-  }, [navigate, setTickets, submitted, ticketInfo])
 
-  console.log(ticketInfo);
+    await fetch(APIEndpoints.tickets, requestOptions);
+    navigate('/tickets');
+  }
 
   // handle submit===================
   const handleSubmit = (event) => {
     event.preventDefault();
-    setsubmitted(true);
+    postDataToTickets()
   }
 
   // handle change===================
@@ -75,15 +52,13 @@ function BookTicket(props) {
 
     setTicketInfo({
       ...ticketInfo, 
-      [name] : value, 
-      tourId: tour.id,
+      [name] : value
     })
   }
 
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>{tour.name}</h3>
       <input 
         type="text" 
         placeholder="email"
