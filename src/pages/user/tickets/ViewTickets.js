@@ -25,7 +25,7 @@ function ViewTickets() {
     <ul>
       {tickets.map((ticket, index) => {
         const { email, quantity, date, tour} = ticket
-        console.log(ticket);
+        
         return (
           <li key={index}>
             <h3>{tour.name}</h3>

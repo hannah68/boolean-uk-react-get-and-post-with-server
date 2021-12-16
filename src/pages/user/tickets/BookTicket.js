@@ -38,7 +38,6 @@ function BookTicket() {
       await fetch(APIEndpoints.tickets, requestOptions);
       navigate('/tickets');
     }
-
     if(submitted){
       postDataToTickets()
     }
