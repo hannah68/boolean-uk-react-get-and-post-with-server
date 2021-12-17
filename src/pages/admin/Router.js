@@ -4,12 +4,10 @@ import { Link } from "react-router-dom"
 import CreateTourPage from "./tours/CreateTour"
 import Dashboard from "./Dashboard"
 import TicketsSummary from "./tickets/Summary"
-
 import {LocalRoutes, APIEndpoints} from '../../config'
 
 function AdminRouter() {
   const [tours, setTours] = useState([])
-
 
   useEffect(() => {
     fetch(APIEndpoints.tours)
